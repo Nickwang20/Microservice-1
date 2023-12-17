@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Average Scores</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        #chart {
+            width: 800px;
+            height: 500px;
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.1.2/dist/echarts.min.js"></script>
+</head>
+<body>
+    <h1>Course Average Scores</h1>
+
+    <form id="average-scores-form">
+        <label for="course_id">Course ID:</label>
+        <input type="text" id="course_id" name="course_id">
+        <input type="button" value="Get Average Scores" onclick="getAverageScores()">
+    </form>
+
+    <p id="average-scores-label"></p>
+
+    <div id="chart"></div>
+
+    <script>
+        function drawLineChart(data) {
+            var chart = document.getElementById('chart');
+            var myChart = echarts.init(chart);
+
+            var years = data.map(function (item) {
+                return item[0];
+            });
+
+            var scores = data.map(function (item) {
+                return item[1];
+            });
+
+            var option = {
+                title: {
+                    text: 'Course Average Scores',
+                    left: 'left'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: years
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: scores,
+                    type: 'line'
+                }]
+            };
+
+            myChart.setOption(option);
+        }
+
+        function getAverageScores() {
+            var courseId = document.getElementById('course_id').value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/average_scores', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    drawLineChart(data);
+                    document.getElementById('average-scores-label').innerText = 'Average Scores for Last Five Years';
+                } else {
+                    alert('Failed to get average scores.');
+                }
+            };
+
+            xhr.send(JSON.stringify({
+                course_id: courseId
+            }));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{"version":"1.0",
+"timestamp":"2023-11-23T00:47:33.963Z",
+"requestContext":
+    {"requestId":"256d6f3c-8d28-485b-8903-6cd65d6b0357",
+    "functionArn":"arn:aws:lambda:us-east-2:006813630962:function:snsemailnotification:$LATEST",
+    "condition":"RetriesExhausted",
+    "approximateInvokeCount":3},
+"requestPayload":
+    {"Records":[{"EventSource":"aws:sns",
+                "EventVersion":"1.0",
+                "EventSubscriptionArn":"arn:aws:sns:us-east-2:006813630962:snstriggledbygetscore:83a90877-bed7-47c0-a889-dfd2599266d5",
+                "Sns":{"Type":"Notification",
+                        "MessageId":"5d177698-7696-57e8-8341-2b40d42e3be9",
+                        "TopicArn":"arn:aws:sns:us-east-2:006813630962:snstriggledbygetscore",
+                        "Subject":null,
+                        "Message":"<Response 113 bytes [200 OK]>",
+                        "Timestamp":"2023-11-23T00:44:40.452Z",
+                        "SignatureVersion":"1",
+                        "Signature":"lDbHk4sHB7GBQG31udyjtpwODOZO8M5pHofrTGyIp2eD/xa9eJQR+ju9VC2saLf9zH2e7qhJYV7e+//OLqtbC357WlHVUwtzFakHOCD5QP/396SoloP1342u20HEtOSDxGhO/DiqTElhP3XhlJXFARl/lHkRmDPBSbv0INcsYgCKIcZ873J7GfYDCGb8X6YJdAJ257Wx8ZthSXAAKzcS35YDagMKhBAM5nryroOkYcU5filzh/eajIckgbObdl66XzuZXIhKq7UDMQdYqT0gTAzfhecAbNId0kRimye6jlJNoLErOnRpHF1Xc3b0DQupmDTdx89LQH9M+hrOieA77Q==",
+                        "SigningCertUrl":"https://sns.us-east-2.amazonaws.com/SimpleNotificationService-01d088a6f77103d0fe307c0069e40ed6.pem",
+                        "UnsubscribeUrl":"https://sns.us-east-2.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-east-2:006813630962:snstriggledbygetscore:83a90877-bed7-47c0-a889-dfd2599266d5",
+                        "MessageAttributes":{}}
+                }]
+    },
+"responseContext":{"statusCode":200,
+                    "executedVersion":"$LATEST",
+                    "functionError":"Unhandled"},
+                    "responsePayload":{"errorMessage": "Expecting value: line 1 column 1 (char 0)", 
+                                        "errorType": "JSONDecodeError", 
+                                        "requestId": "256d6f3c-8d28-485b-8903-6cd65d6b0357", 
+                                        "stackTrace": ["  File \"/var/task/lambda_function.py\", line 30, in lambda_handler\n    sns_message = json.loads(record['Sns']['Message'])\n", "  File \"/var/lang/lib/python3.11/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n", "  File \"/var/lang/lib/python3.11/json/decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n", "  File \"/var/lang/lib/python3.11/json/decoder.py\", line 355, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\n"]
+                                        }
+}
