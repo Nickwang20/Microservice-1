@@ -54,6 +54,11 @@ def mock_data():
 
     conn.close()
 
+    conn = duckdb.connect('./resources/scores.db', read_only=False)
+    conn.execute(
+        'CREATE OR REPLACE VIEW avgscores AS SELECT student_id as id, avg(score) as avgscore FROM scores GROUP BY student_id')
+    conn.close()
+
 
 def get_db_conn():
     return duckdb.connect('./resources/scores.db', read_only=False)

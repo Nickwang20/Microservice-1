@@ -46,10 +46,9 @@ class ScoreResource:
                 full_result[response["resource"]] = response["data"]
             end_time = time.time()
             full_result["elapsed_time"] = end_time - start_time
-
+            print("Async method callback.\n")
             return full_result
 
-            # print("\nFull Result = ", json.dumps(full_result, indent=2))
 
     async def get_score_sync(self, id):
         full_result = None
@@ -63,5 +62,5 @@ class ScoreResource:
             print("URL ", r["url"] + id, "returned", full_result[r["resource"]])
         end_time = time.time()
         full_result["elapsed_time"] = end_time - start_time
-
+        print("Sync method callback.\n")
         return full_result
